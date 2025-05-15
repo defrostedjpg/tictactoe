@@ -1,16 +1,28 @@
 import { useState } from 'react'
 
-  function Square({value, onSquareClick}) {
-    return (<button onClick={onSquareClick} className='items-center justify-center border w-12 h-12 p-0 m-0'>{value}</button>);
-  }
+function Square({value, onSquareClick}) {
+  return (<button onClick={onSquareClick} className='items-center justify-center border w-12 h-12 p-0 m-0'>{value}</button>);
+}
 
 function App() {
-  const[squares, setSquares] = useState(Array(9).fill(null))
+  const [xIsNext, setXIsNext] = useState(true);
+  const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
-    const nextSquares = squares.slice()
-    nextSquares[i] = 'X'
-    setSquares(nextSquares)
+    const nextSquares = squares.slice();
+
+    if (squares[i]) {
+      return;
+    }
+
+    if (xIsNext) {
+      nextSquares[i] = 'X';
+    } else {
+      nextSquares[i] = 'O';
+    }
+
+    setSquares(nextSquares);
+    setXIsNext(!xIsNext);
   }
 
   return (
