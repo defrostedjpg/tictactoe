@@ -86,11 +86,31 @@ function App() {
     setXIsNext(!xIsNext)
   }
 
+  const moves = history.map((squares, move) => {
+  let description;
+  if (move > 0) {
+    description = 'Go to move #' + move;
+  } else {
+    description = 'Go to game start';
+  }
+
+  return (
+    <li key={move} className=''>
+      <button className='w-full text-left cursor-pointer my-2 bg-neutral-800 rounded-lg py-2 px-3.5' onClick={() => jumpTo(move)}>{description}</button>
+    </li>
+  )
+})
+
   return (
     <>
       <div className="h-screen flex flex-col justify-center items-center text-neutral-100 bg-neutral-900">
         <h1 className="my-6 text-3xl font-bold">Tic Tac Toe</h1>
-        <Board xIsNext={xIsNext} squares={currentSquares} onplay={handlePlay} />
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <div className='my-6'>
+          <ol>
+            {moves}
+          </ol>
+        </div>
       </div>
     </>
   );
