@@ -22,7 +22,7 @@ function Board({ xIsNext, squares, onPlay}) {
       nextSquares[i] = 'O';
     }
 
-    onPlay(nextSquares)
+    onPlay(nextSquares);
   }
 
   function calculateWinner(squares) {
@@ -90,7 +90,7 @@ function App() {
     <>
       <div className="h-screen flex flex-col justify-center items-center text-neutral-100 bg-neutral-900">
         <h1 className="my-6 text-3xl font-bold">Tic Tac Toe</h1>
-        <Board xIsNext={xIsNext} squares={currentSquares} onplay={handlePlay} />
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
     </>
   );
